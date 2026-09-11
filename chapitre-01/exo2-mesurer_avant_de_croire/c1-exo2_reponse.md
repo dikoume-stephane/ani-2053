@@ -93,9 +93,10 @@ SUM:                                 10419         450956         617108        
 ---------------------------------------------------------------------------------------
 ```
 ## comparaison 
-pour les fichier , on est loin devant les 2641 fichier souces anoncés et des 1193385 ligne de code . 
+pour les fichier ,les fichier souces etant les .cpp et .h, on obtien un total de 4 592 fichier source qui est largement superieur uax  2641 fichier souces anoncés et un total de 2891683 lignes de code encore superieur aux 1193385 ligne de code annoncées dans le chapitre . 
 cet ecart est du a :
 
 - Inclusion du dossier **Build** (Fichiers intermédiaires) : la commande de comptage de **cloc** a été exécutée sans ignorer le dossier **Build**, elle a compté les objets compilés, mais aussi la copie des en-têtes et les fichiers temporaires générés par Jenga. 
 - Inclusion des fichiers de test :Le dépôt contient des suites de tests. et encore une fois, la  commande de **cloc** a pris en compte les dossiers **tests**, cela augmente le nombre de fichiers et de lignes par rapport à un comptage restreint au code source.
 - L'évolution du dépôt :Comme l'indique le chapitre 1, les mesures du chapitre ont été faites « le jour où l'encadreur a écris cette page ». Le dépôt étant un projet qui évolue, des ajouts ou des corrections ont pu être faits depuis.  
+pour les fichiers declares comme ignoré, ma theorie se porte sur les assets du projet (images, video et ...)
