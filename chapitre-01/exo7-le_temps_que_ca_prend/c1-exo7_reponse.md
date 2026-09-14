@@ -124,3 +124,20 @@ L'écart entre les deux temps est expliqué par la **gestion du cache et de la c
 1. **Lors du premier build :** Jenga doit compiler chaque fichier source `.cpp` en fichier objet `.obj` / `.o` puis exécuter l'éditeur de liens pour créer le binaire final.
 
 2. **Lors du second build :** Jenga vérifie les horodatages (**timestamps**) de tous les fichiers du projet. Constatant qu'aucun fichier source `.cpp` ou d'en-tête `.h` n'a été modifié depuis la dernière passe, il conclut que tous les fichiers sont à jour. Aucun appel au compilateur ou au linker n'est déclenché, ce qui rend l'exécution presque instantanée.
+
+---
+
+## 3. Mécanisme de détection des dépendances (`.d` / `.obj`)
+
+### Comment Jenga identifie-t-il la liste exacte des en-têtes ?
+La liste des dépendances n'est pas écrite dans les fichiers `.jenga`. C'est le **compilateur C++ lui-même** (GCC, Clang ou MSVC) qui génère automatiquement un fichier de dépendances à la compilation de chaque fichier source (via des options comme `-MMD -MP` ou `/showIncludes`).
+
+Exemple d'association extrait de `src_NKContainers_Associative_NkBinaryTree.obj` :
+
+```makefile
+D:\2DS\...\NkBinaryTree.obj: \
+  D:/2DS/.../NKContainers/src/.../NkBinaryTree.cpp \
+  D:/2DS/.../NKContainers/src/.../NkBinaryTree.h \
+  D:/2DS/.../NKCore/src/.../NkTypes.h \
+  D:/2DS/.../NKPlatform/src/.../NkArchDetect.h \
+```
