@@ -1,5 +1,109 @@
 ## fichier jenga choisi 
 le fichier jenga choisi est **"Sandbox\System\NKReflection\NKReflectionSandbox.jenga"**
+il a ete trouvé grace à la commande **Get-ChildItem** :
+```
+ Get-ChildItem -Recurse -File "NKReflectionSandbox.jenga"
+
+    Directory: D:\2DS\projet\programmation cpp\Nkentseu\Sandbox\System\NKReflection
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          10/09/2026    19:59           2425 NKReflectionSandbox.jenga
+```
+puis, son contenu m'a ete donné par :
+```
+
+PS D:\2DS\projet\programmation cpp\Nkentseu> Get-Content -Encoding utf8 (Get-ChildItem -Recurse -File "NKReflectionSandbox.jenga").FullName
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+SandboxNKReflection
+===================
+Projet sandbox cible pour valider NKReflection avec ses dependances
+Foundation + System en build isole.
+"""
+
+from Jenga import *
+from jengaconfig import *
+
+
+with project("SandboxNKReflection"):
+    consoleapp()
+    language("C++")
+    cppdialect("C++17")
+    location(".")
+
+    files([
+        "src/main.cpp",
+    ])
+
+    includedirs([
+        "src",
+        "%{NKReflection.location}/src",
+        "%{NKLogger.location}/src",
+        "%{NKThreading.location}/src",
+        "%{NKContainers.location}/src",
+        "%{NKMemory.location}/src",
+        "%{NKCore.location}/src",
+        "%{NKPlatform.location}/src",
+    ])
+
+    _LINKS = [
+        "NKReflection",
+        "NKLogger",
+        "NKThreading",
+        "NKContainers",
+        "NKMemory",
+        "NKCore",
+        "NKPlatform",
+    ]
+
+    links(_LINKS)
+    dependson(_LINKS)
+
+    objdir("%{wks.location}/Build/Obj/%{cfg.buildcfg}-%{cfg.system}/%{prj.name}")
+    targetdir("%{wks.location}/Build/Bin/%{cfg.buildcfg}-%{cfg.system}/%{prj.name}")
+
+    with filter("system:Windows && options:windows-runtime=uwp"):
+        objdir("%{wks.location}/Build/Obj/%{cfg.buildcfg}-%{cfg.system}-uwp/%{prj.name}")
+        targetdir("%{wks.location}/Build/Bin/%{cfg.buildcfg}-%{cfg.system}-uwp/%{prj.name}")
+
+    with filter("system:Windows && !options:windows-runtime=uwp && !system:XboxSeries && !system:XboxOne"):
+        usetoolchain(TC_WINDOWS)
+        links(["user32", "shell32"])
+
+    with filter("system:UWP || system:Windows && options:windows-runtime=uwp"):
+        usetoolchain("xbox-clang")
+
+    with filter("system:Linux"):
+        usetoolchain("clang-native")
+        links(["pthread"])
+
+    with filter("system:macOS"):
+        usetoolchain("clang-native")
+        links(["pthread"])
+
+    with filter("system:Android"):
+        usetoolchain("android-ndk")
+        links(["log"])
+
+    with filter("system:Web"):
+        usetoolchain("emscripten")
+
+    with filter("system:XboxSeries || system:XboxOne"):
+        usetoolchain("xbox-clang")
+
+    with filter("config:Debug"):
+        defines(["_DEBUG", "DEBUG", "NKENTSEU_DEBUG"])
+        optimize("Off")
+        symbols(True)
+
+    with filter("config:Release"):
+        defines(["NDEBUG"])
+        optimize("Speed")
+        symbols(False)
+```
+## annotation et explications:
 ```py
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
