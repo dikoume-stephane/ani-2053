@@ -1,6 +1,19 @@
 # Exercice 10 : Analyse des dépendances de NKCanvas
 
-En analysant le fichier `NKCanvas.jenga` et plus particulièrement ses commentaires détaillés, nous pouvons reconstruire l'arbre de dépendances explicite et implicite du module.
+## recherche du fichier :
+* **commande utilisée:** `Get-ChildItem -Recurse -File "NKCanvas.jenga" `
+* **resultat :**
+```powershell
+D:\2DS\projet\programmation_cpp\Nkentseu> Get-ChildItem -Recurse -File "NKCanvas.jenga"           
+
+    Répertoire : D:\2DS\projet\programmation_cpp\Nkentseu\Kernel\Runtime\NKCanvas
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          14/09/2026    21:07          13793 NKCanvas.jenga
+```
+
+En analysant le fichier `NKCanvas.jenga`, ses commentaires détaillés et les .jenga de certaines de ses dependances, nous pouvons reconstruire l'arbre de dépendances explicite et implicite du module.
 
 ## 1. Dépendances directes (Niveau 1)
 La directive `nkentseudependson(_canvasDeps, ...)` liste explicitement les dépendances directes de `NKCanvas`. 
