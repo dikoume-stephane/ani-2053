@@ -143,13 +143,13 @@ with project("SandboxNKReflection"):
 
     includedirs([
         "src",
-        "%{NKReflection.location}/src",
-        "%{NKLogger.location}/src",
-        "%{NKThreading.location}/src",
-        "%{NKContainers.location}/src",
-        "%{NKMemory.location}/src",
-        "%{NKCore.location}/src",
-        "%{NKPlatform.location}/src",
+        "%{NKReflection.location}/src",# ?
+        "%{NKLogger.location}/src",# ?
+        "%{NKThreading.location}/src",# ?
+        "%{NKContainers.location}/src",# ?
+        "%{NKMemory.location}/src",# ?
+        "%{NKCore.location}/src",# ?
+        "%{NKPlatform.location}/src",# ?
     ])
     # EN-TÊTES : Dossiers d'inclusions pour que le compilateur trouve les headers des modules.
 
@@ -247,7 +247,7 @@ with project("SandboxNKReflection"):
     with filter("config:Release"):
     # filtre du mode Release.
         defines(["NDEBUG"])
-        # Macro du mode debug.
+        # Macro qui eteit le mode debug si on est en release(NDEBUG = no debug).
         
         optimize("Speed")
         # Optimise l'exécutable.
@@ -255,3 +255,6 @@ with project("SandboxNKReflection"):
         symbols(False)
         # ?
 ```
+## quelques explications
+- Dans Jenga, les expressions écrites sous la forme %{...} sont des variables  de substitution.Elles ne sont pas évaluées au moment où Python lit la ligne, mais remplacées dynamiquement par Jenga. 
+- **TC_WINDOWS** est une varible de "jengaconfig" qui contien la chaîne de compilation principale définie pour Windows dans la configuration globale du dépôt. je suppose que c'est pariel pour `xbox-clang` et `emscripten`
