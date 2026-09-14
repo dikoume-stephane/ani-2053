@@ -236,7 +236,7 @@ with project("SandboxNKReflection"):
     with filter("config:Debug"):
     # filtre du mode Debug.
         defines(["_DEBUG", "DEBUG", "NKENTSEU_DEBUG"])
-        # Macros du préprocesseur pour activer les .
+        # Macros du préprocesseur pour activer du code conditionnel en mode débogage .
         
         optimize("Off")
         # Désactive les optimisations .
