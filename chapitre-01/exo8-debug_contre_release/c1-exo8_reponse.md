@@ -260,11 +260,49 @@ Les écarts observés entre ces quatre nombres s'expliquent par les directives d
   
   En mode Debug, l'absence d'optimisation permet une traduction C++ vers assembleur directe et très rapide. En mode Release, le compilateur doit effectuer de multiples passes complexes d'analyse et d'optimisation , ce qui augmente le temps de compilation.
 
+## 2. Localisation réelle des directives et mécanisme d'héritage
 
-### Localisation des directives de configuration
-Après vérification dans la structure du moteur, les directives `symbols()` et `optimize()` ne sont pas déclarées dans `MonEssai.jenga`, mais dans la configuration globale du Workspace (`Nkentseu.jenga`). 
+Une vérification ciblée via la commande `Select-String` permet de clarifier la répartition des directives :
 
-C'est le **Workspace qui dicte la politique de compilation globale** pour l'ensemble des sub-projets. Cela garantit l'homogénéité des options de compilation entre les bibliothèques statiques et l'exécutable final.
+* **pour NKensteu.jenga**: la commande est `Select-String -Path Nkentseu.jenga -Pattern "optimize|symbols"`
+```powershell
+
+PS D:\2DS\projet\programmation_cpp\Nkentseu> Select-String -Path Nkentseu.jenga -Pattern "optimize|symbols"
+PS D:\2DS\projet\programmation_cpp\Nkentseu> 
+```
+* **pour Nkmath :** la commande est `Select-String -Path Kernel\Foundation\NKMath\NKMath.jenga -Pattern "optimize|symbols"`
+
+
+```powershell
+ D:\2DS\projet\programmation_cpp\Nkentseu> Select-String -Path Kernel\Foundation\NKMath\NKMath.jenga -Pattern "optimize|symbols"
+
+Kernel\Foundation\NKMath\NKMath.jenga:65:        optimize("Off")
+Kernel\Foundation\NKMath\NKMath.jenga:66:        symbols(True)
+Kernel\Foundation\NKMath\NKMath.jenga:69:        optimize("Speed")
+Kernel\Foundation\NKMath\NKMath.jenga:70:        symbols(False)
+
+```
+## Analyse de l'architecture de configuration :
+Au niveau des modules (ex: NKMath.jenga) : Chaque module déclare explicitement ses propres règles de compilation selon la configuration active :
+
+```Python
+with filter("config: Debug"):
+    defines(["_DEBUG", "DEBUG", "NKENTSEU_DEBUG"])
+    optimize("Off")
+    symbols(True)
+
+with filter("config: Release"):
+    defines(["NDEBUG", "NKENTSEU_RELEASE"])
+    optimize("Speed")
+    symbols(False)
+```
+
+Au niveau du projet applicatif (MonEssai.jenga) : Le fichier MonEssai.jenga ne contient aucune directive symbols() ou optimize().
+
+D'où viennent les options de MonEssai ?
+Puisque le workspace racine ne dicte pas ces règles et que MonEssai.jenga ne les définit pas, MonEssai hérite uniquement des options par défaut du moteur de build Jenga.
+
+En revanche, lors de la construction globale, les dépendances internes (NKMath, NKContainers, etc.) sont compilées avec les directives spécifiques déclarées dans leurs propres fichiers .jenga. Les variations de taille et de temps observées sur le binaire final proviennent donc majoritairement de la compilation de ces dépendances.
 
 ---
 
