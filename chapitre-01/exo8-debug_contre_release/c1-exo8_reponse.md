@@ -8,6 +8,7 @@
 * **commande utilisée :** `jenga build --project MonEssai --config Release`
 * **rsultat :**
 ```
+ D:\2DS\projet\programmation_cpp\Nkentseu> jenga build --project MonEssai --config Release
 
 ╔══════════════════════════════════════════════════════════════════╗
 ║                                                                  ║
@@ -29,9 +30,30 @@ Configuration: Release
 Target:        Windows x86_64
 Toolchain:     clang-mingw
 
-Build Order (1 projects):
-  1. MonEssai [CONSOLE_APP]
+Build Order (6 projects):
+  1. NKPlatform [STATIC_LIB] → 
+  2. NKCore [STATIC_LIB] (depends: NKPlatform) → 
+  3. NKMemory [STATIC_LIB] (depends: NKCore, NKPlatform) → 
+  4. NKContainers [STATIC_LIB] (depends: NKCore, NKMemory, NKPlatform) → 
+  5. NKMath [STATIC_LIB] (depends: NKContainers, NKCore, NKMemory, NKPlatform) → 
+  6. MonEssai [CONSOLE_APP] (depends: NKMath)
 
+
+
+✓   [5/12] Compiled: NkMat.cpp
+✓   [6/12] Compiled: NkQuat.cpp
+✓   [7/12] Compiled: NkRandom.cpp
+✓   [8/12] Compiled: NkRange.cpp
+✓   [9/12] Compiled: NkSIMD.cpp
+✓   [10/12] Compiled: NkRectangle.cpp
+✓   [11/12] Compiled: NkSegment.cpp
+✓   [12/12] Compiled: NkVec.cpp
+ℹ Linking...
+✓ Built: Build\Lib\Release-Windows\NKMath.lib
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│  ✓ Build Successful                                                            Time: 16.95s  │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
 
 ╔══════════════════════════════════════════════════════════════════════════════════════════════╗
 ║  Project: MonEssai                                                        Kind: CONSOLE_APP  ║
@@ -43,14 +65,14 @@ Build Order (1 projects):
 ✓ Built: Build\Bin\Release-Windows\MonEssai\MonEssai.exe
 
 ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
-│  ✓ Build Successful                                                             Time: 2.00s  │
+│  ✓ Build Successful                                                             Time: 4.26s  │
 └──────────────────────────────────────────────────────────────────────────────────────────────┘
 
 ════════════════════════════════════════════════════════════════════════════════
                                 BUILD COMPLETED                                 
 ════════════════════════════════════════════════════════════════════════════════
-Projects Built:  1/1
-Time:           2.00s
+Projects Built:  6/6
+Time:           56.91s
 Status:         ✓ SUCCESS
 ════════════════════════════════════════════════════════════════════════════════
 ```
@@ -59,6 +81,8 @@ Status:         ✓ SUCCESS
 * **commande utilisée :** `jenga build --project MonEssai --config debug`
 * **resultat :**
 ```
+jenga build --project MonEssai --config Debug  
+
 ╔══════════════════════════════════════════════════════════════════╗
 ║                                                                  ║
 ║                ██╗███████╗███╗   ██╗ ██████╗  █████╗             ║
@@ -93,24 +117,133 @@ Build Order (1 projects):
 ✓ Built: Build\Bin\Debug-Windows\MonEssai\MonEssai.exe
 
 ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
-│  ✓ Build Successful                                                             Time: 3.77s  │
+│  ✓ Build Successful                                                             Time: 1.60s  │
 └──────────────────────────────────────────────────────────────────────────────────────────────┘
 
 ════════════════════════════════════════════════════════════════════════════════
                                 BUILD COMPLETED                                 
 ════════════════════════════════════════════════════════════════════════════════
 Projects Built:  1/1
-Time:           3.77s
+Time:           1.60s
 Status:         ✓ SUCCESS
 ════════════════════════════════════════════════════════════════════════════════
+
+PS D:\2DS\projet\programmation_cpp\Nkentseu> jenga clean --all                            
+
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║                ██╗███████╗███╗   ██╗ ██████╗  █████╗             ║
+║                ██║██╔════╝████╗  ██║██╔════╝ ██╔══██╗            ║
+║                ██║█████╗  ██╔██╗ ██║██║  ███╗███████║            ║
+║           ██   ██║██╔══╝  ██║╚██╗██║██║   ██║██╔══██║            ║
+║           ╚█████╔╝███████╗██║ ╚████║╚██████╔╝██║  ██║            ║
+║            ╚════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝            ║
+║                                                                  ║
+║             Multi-platform C/C++ Build System v2.8.0             ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+[NKCode] ATTENTION : aucun wheel Jenga trouve (dist/*.whl) -> le paquet n'aura PAS de Jenga embarque, et les boutons Construire/Executer seront inoperants. Produisez-le avec ./cri.sh dans le depot Jenga.
+Removed D:\2DS\projet\programmation_cpp\Nkentseu\Build
+PS D:\2DS\projet\programmation_cpp\Nkentseu> jenga build --project MonEssai --config Debug
+
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║                ██╗███████╗███╗   ██╗ ██████╗  █████╗             ║
+║                ██║██╔════╝████╗  ██║██╔════╝ ██╔══██╗            ║
+║                ██║█████╗  ██╔██╗ ██║██║  ███╗███████║            ║
+║           ██   ██║██╔══╝  ██║╚██╗██║██║   ██║██╔══██║            ║
+║           ╚█████╔╝███████╗██║ ╚████║╚██████╔╝██║  ██║            ║
+║            ╚════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝            ║
+║                                                                  ║
+║             Multi-platform C/C++ Build System v2.8.0             ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Loading workspace...
+[NKCode] ATTENTION : aucun wheel Jenga trouve (dist/*.whl) -> le paquet n'aura PAS de Jenga embarque, et les boutons Construire/Executer seront inoperants. Produisez-le avec ./cri.sh dans le depot Jenga.
+
+Configuration: Debug
+Target:        Windows x86_64
+Toolchain:     clang-mingw
+
+Build Order (6 projects):
+  1. NKPlatform [STATIC_LIB] → 
+  2. NKCore [STATIC_LIB] (depends: NKPlatform) → 
+  3. NKMemory [STATIC_LIB] (depends: NKCore, NKPlatform) → 
+  4. NKContainers [STATIC_LIB] (depends: NKCore, NKMemory, NKPlatform) → 
+  5. NKMath [STATIC_LIB] (depends: NKContainers, NKCore, NKMemory, NKPlatform) → 
+  6. MonEssai [CONSOLE_APP] (depends: NKMath)
+
+
+
+
+
+✓   [39/43] Compiled: NkStringView.cpp
+✓   [40/43] Compiled: NkStringUtils.cpp
+✓   [41/43] Compiled: NkResult.cpp
+✓   [42/43] Compiled: NkVariant.cpp
+✓   [43/43] Compiled: NkSpan.cpp
+ℹ Linking...
+✓ Built: Build\Lib\Debug-Windows\NKContainers.lib
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│  ✓ Build Successful                                                            Time: 14.71s  │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════════════════════════════╗
+║  Project: NKMath                                                           Kind: STATIC_LIB  ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+ℹ Found 12 source file(s)
+✓   [1/12] Compiled: NkAngle.cpp
+✓   [2/12] Compiled: NkEulerAngle.cpp
+✓   [3/12] Compiled: NkColor.cpp
+✓   [4/12] Compiled: NkFunctions.cpp
+✓   [5/12] Compiled: NkMat.cpp
+✓   [6/12] Compiled: NkQuat.cpp
+✓   [7/12] Compiled: NkRandom.cpp
+✓   [8/12] Compiled: NkRange.cpp
+✓   [9/12] Compiled: NkSIMD.cpp
+✓   [10/12] Compiled: NkRectangle.cpp
+✓   [11/12] Compiled: NkSegment.cpp
+✓   [12/12] Compiled: NkVec.cpp
+ℹ Linking...
+✓ Built: Build\Lib\Debug-Windows\NKMath.lib
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│  ✓ Build Successful                                                            Time: 16.50s  │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════════════════════════════╗
+║  Project: MonEssai                                                        Kind: CONSOLE_APP  ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+ℹ Found 1 source file(s)
+✓   [1/1] Compiled: main.cpp
+ℹ Linking...
+✓ Built: Build\Bin\Debug-Windows\MonEssai\MonEssai.exe
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│  ✓ Build Successful                                                             Time: 4.61s  │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
+
+════════════════════════════════════════════════════════════════════════════════
+                                BUILD COMPLETED                                 
+════════════════════════════════════════════════════════════════════════════════
+Projects Built:  6/6
+Time:           55.89s
+Status:         ✓ SUCCESS
+════════════════════════════════════════════════════════════════════════════════
+
 ```
 
 ## 1. Relevé des quatre nombres
 
 | Configuration | Temps de construction (s) | Taille du binaire (Ko / Mo) |
 | :--- | :--- | :--- |
-| **Debug** | **`2.10` s**  | **`141` Ko**  |
-| **Release** | **`15.39` s**  | **`141` Ko**  |
+| **Debug** | **`55.89` s**  | **`3415` Ko**  |
+| **Release** | **`56.91` s**  | **`2794` Ko**  |
 
 ---
 
@@ -119,7 +252,7 @@ Status:         ✓ SUCCESS
 Les écarts observés entre ces quatre nombres s'expliquent par les directives définies dans les filtres de configuration du fichier `.jenga` :
 
 ### A. Explication de la différence de taille  :  
-  En Debug, la génération des symboles enrichit l'executable de toutes les métadonnées de débogage (noms de variables, numéros de lignes). En Release, ces données sont omises, réduisant drastiquement la taille du fichier exécutable.mais mon main.cpp ettant vide, l'ecart de taille ne se fait pas sentir.
+  En Debug, la génération des symboles enrichit l'executable de toutes les métadonnées de débogage (noms de variables, numéros de lignes). En Release, ces données sont omises, réduisant drastiquement la taille du fichier exécutable. j'ai changé d'approche en remettant les depandances de "MonEssai" que j'avais mis à l'exo d'avant .on observe bien l'ecart entre les deux executables.avec mon ancien main.cpp, ettant vide,le compilateur n'avait rien à optimiser dons l'ecart de taille ne se fait pas sentir.
 * **`optimize("Speed")` (Release) :**  
   L'optimiseur supprime le code inutilisé.
 
