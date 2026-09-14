@@ -72,7 +72,7 @@ Build Order (6 projects):
                                 BUILD COMPLETED                                 
 ════════════════════════════════════════════════════════════════════════════════
 Projects Built:  6/6
-Time:           56.91s
+Time:           55.72s
 Status:         ✓ SUCCESS
 ════════════════════════════════════════════════════════════════════════════════
 ```
@@ -232,7 +232,7 @@ Build Order (6 projects):
                                 BUILD COMPLETED                                 
 ════════════════════════════════════════════════════════════════════════════════
 Projects Built:  6/6
-Time:           55.89s
+Time:           48.52s
 Status:         ✓ SUCCESS
 ════════════════════════════════════════════════════════════════════════════════
 
@@ -242,14 +242,14 @@ Status:         ✓ SUCCESS
 
 | Configuration | Temps de construction (s) | Taille du binaire (Ko / Mo) |
 | :--- | :--- | :--- |
-| **Debug** | **`55.89` s**  | **`3415` Ko**  |
-| **Release** | **`56.91` s**  | **`2794` Ko**  |
+| **Debug** | **`48.52` s**  | **`3415` Ko**  |
+| **Release** | **`55.72` s**  | **`2794` Ko**  |
 
 ---
 
-## 2. Identification et explication des lignes dans `MonEssai.jenga`
+## 2. Identification et explication des lignes dans `Nkentseu.jenga`
 
-Les écarts observés entre ces quatre nombres s'expliquent par les directives définies dans les filtres de configuration du fichier `.jenga` :
+Les écarts observés entre ces quatre nombres s'expliquent par les directives définies dans les filtres de configuration du fichier `Nkentseu.jenga` (c'est le workspace qui decide des configurations):
 
 ### A. Explication de la différence de taille  :  
   En Debug, la génération des symboles enrichit l'executable de toutes les métadonnées de débogage (noms de variables, numéros de lignes). En Release, ces données sont omises, réduisant drastiquement la taille du fichier exécutable. j'ai changé d'approche en remettant les depandances de "MonEssai" que j'avais mis à l'exo d'avant .on observe bien l'ecart entre les deux executables.avec mon ancien main.cpp, ettant vide,le compilateur n'avait rien à optimiser dons l'ecart de taille ne se fait pas sentir.
@@ -259,3 +259,17 @@ Les écarts observés entre ces quatre nombres s'expliquent par les directives d
 ### B. Explication de la différence de temps de build (Nombre 1 vs Nombre 3)
   
   En mode Debug, l'absence d'optimisation permet une traduction C++ vers assembleur directe et très rapide. En mode Release, le compilateur doit effectuer de multiples passes complexes d'analyse et d'optimisation , ce qui augmente le temps de compilation.
+
+
+### Localisation des directives de configuration
+Après vérification dans la structure du moteur, les directives `symbols()` et `optimize()` ne sont pas déclarées dans `MonEssai.jenga`, mais dans la configuration globale du Workspace (`Nkentseu.jenga`). 
+
+C'est le **Workspace qui dicte la politique de compilation globale** pour l'ensemble des sub-projets. Cela garantit l'homogénéité des options de compilation entre les bibliothèques statiques et l'exécutable final.
+
+---
+
+### 2. Analyse de l'écart de temps
+
+* **Variabilité des mesures :** L'écart de 1-6 seconde représente moins de 15 % du temps total, ce qui entre dans la marge d'erreur du système (bruit de mesure causé par le disque et le processeur sous Windows).
+* **Répartition du temps de compilation :** La majeure partie du temps de construction est consommée par le prétraitement des en-têtes C++ (`#include`), étape dont la durée est strictement identique dans les deux configurations. 
+* **Effet de compensation :** Le temps supplémentaire passé par le compilateur à optimiser le code en Release est compensé en Debug par le surcoût de l'écriture des symboles de débogage lourds lors de la phase d'édition de liens.
