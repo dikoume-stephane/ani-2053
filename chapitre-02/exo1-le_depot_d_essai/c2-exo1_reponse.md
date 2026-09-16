@@ -22,7 +22,7 @@ Initialized empty Git repository in D:/2DS/projet/programmation_cpp/niveau 2/spr
 ```
 ## creation des fichier et realisation des commits
 
-* **les comandes utilisée sont :**`echo "nom_du_fichier" > nom_du_fichier.extension` pour la creation des fichiers et `git commit -m "message"`pour faire un commit .
+* **les comandes utilisée sont :**`echo "contenu/message" > nom_du_fichier.extension` pour la creation des fichiers et `git commit -m "message"`pour faire un commit .
 ```powershell
  echo "Fichier 1" > fichier1.txt
 PS D:\2DS\projet\programmation_cpp\niveau 2\sprint_1\exo-git> git add fichier1.txt
