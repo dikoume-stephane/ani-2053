@@ -1,6 +1,6 @@
 # Exercice 2 : utilisation de la commande `git status`
 ## apres une modification
-* **modification d'un fichier :** commande `echo "j'ajoute Une nouvelle ligne de texte" >> fichier1.txt` et `git status`apres.
+* **modification d'un fichier :** commande `Add-Content -Path fichier1.txt -Value "j'ajoute Une nouvelle ligne de texte" -Encoding utf8` et `git status`apres.
 ```powershell
 D:\2DS\projet\programmation_cpp\niveau 2\sprint_1\exo-git> echo "j'ajoute Une nouvelle ligne de texte" >> fichier1.txt
 PS D:\2DS\projet\programmation_cpp\niveau 2\sprint_1\exo-git> git status
@@ -32,8 +32,8 @@ Changes to be committed:
 * **commit de l'etat actuel :** commande `git commit -m "mise a jour de fichier1.txt"` et `git status`apres.
 ```powershell
 D:\2DS\projet\programmation_cpp\niveau 2\sprint_1\exo-git> git commit -m "mise a jour de fichier1.txt"
-[master d4738eb] mise a jour de fichier1.txt
- 1 file changed, 0 insertions(+), 0 deletions(-)
+[master 8c86bdd] mise a jour de fichier1.txt
+ 1 file changed, 1 insertion(+)
 PS D:\2DS\projet\programmation_cpp\niveau 2\sprint_1\exo-git> git status
 On branch master
 nothing to commit, working tree clean
