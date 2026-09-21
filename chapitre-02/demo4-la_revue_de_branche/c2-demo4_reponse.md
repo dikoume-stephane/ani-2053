@@ -49,3 +49,5 @@
 ### 4. Ce qui ne devrait pas y etre
 
 * **Historique pollué :** Les commits d'erreurs (`enregistrement`, `erreur pousse`) restent visibles dans l'historique partagé de la branche distant.
+
+remarque: les modification de ma collaboratrice emma ne sont pas visibls car elle a ue un probleme et par la meme occasion un retard sur le groupe . 
