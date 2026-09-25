@@ -12,8 +12,6 @@ Le code ci-dessous regroupe les sept propriétés de configuration de la fenêtr
 
 using namespace nkentseu;
 
-NKENTSEU_DEFINE_APP_DATA(([]() { return NkAppData{}; })());
-
 int nkmain(const NkEntryState& state) {
     NkWindowConfig cfg;
     cfg.title  = "Exo2 - Les sept droits";
