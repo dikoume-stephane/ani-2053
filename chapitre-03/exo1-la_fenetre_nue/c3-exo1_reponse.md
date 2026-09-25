@@ -8,15 +8,17 @@
 
 using namespace nkentseu;
 
-NKENTSEU_DEFINE_APP_DATA(([]() { return NkAppData{}; })());
-
-int nkmain(const NkEntryState& state) {
+int nkmain(const NkEntryState &state) {
+    
     NkWindow window(NkWindowConfig{});
-    while (window.IsOpen()) {
-        while (NkEvents().PollEvent()) {}
+    if (!window.IsOpen()) {
+        logger.Error("[app] creation fenetre echouee");
+        return -1;
     }
+    while (window.IsOpen()) { /* les evenements arrivent ici */ }
     return 0;
 }
+
 ```
 ## 2. Décompte des lignes
 
