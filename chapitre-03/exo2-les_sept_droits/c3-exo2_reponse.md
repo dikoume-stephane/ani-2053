@@ -60,7 +60,7 @@ int nkmain(const NkEntryState& state) {
 * **Droit désactivé :** Autorisation de redimensionner la fenêtre.
 
 
-* **Impact utilisateur :** L'utilisateur **ne peut plus redimensionner** la fenêtre en étirant ses bordures ou ses coins avec la souris. Les curseurs de redimensionnement n'apparaissent pas au survol des bords.
+* **Impact utilisateur :** L'utilisateur **ne peut plus redimensionner** la fenêtre en étirant ses bordures ou ses coins avec la souris. Les curseurs de redimensionnement n'apparaissent pas au survol des bords.mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
 
 
 
@@ -71,7 +71,7 @@ int nkmain(const NkEntryState& state) {
 * **Droit désactivé :** Autorisation de déplacer la fenêtre.
 
 
-* **Impact utilisateur :** L'utilisateur **ne peut plus déplacer** la fenêtre sur son écran en la faisant glisser par sa barre de titre. La fenêtre reste verrouillée à sa position initiale.
+* **Impact utilisateur :** L'utilisateur **ne peut plus déplacer** la fenêtre sur son écran en la faisant glisser par sa barre de titre. La fenêtre reste verrouillée à sa position initiale.mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
 
 
 
@@ -82,7 +82,7 @@ int nkmain(const NkEntryState& state) {
 * **Droit désactivé :** Autorisation de fermer la fenêtre via l'interface système.
 
 
-* **Impact utilisateur :** L'utilisateur **ne peut plus fermer** la fenêtre en cliquant sur la croix système « X » (le bouton est grisé ou inactif). La fermeture n'est possible que par programme ou via le raccourci clavier géré dans le code (touche `ÉCHAP`).
+* **Impact utilisateur :** L'utilisateur **ne peut plus fermer** la fenêtre en cliquant sur la croix système (le bouton est grisé ou inactif). La fermeture n'est possible que par programme ou via le raccourci clavier géré dans le code (touche `ÉCHAP`).mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
 
 
 
@@ -93,7 +93,7 @@ int nkmain(const NkEntryState& state) {
 * **Droit désactivé :** Autorisation de réduire la fenêtre.
 
 
-* **Impact utilisateur :** L'utilisateur **ne peut plus réduire** la fenêtre dans la barre des tâches. Le bouton de réduction « - » de la barre de titre est absent ou grisé.
+* **Impact utilisateur :** L'utilisateur **ne peut plus réduire** la fenêtre dans la barre des tâches. Le bouton de réduction de la barre de titre est absent ou grisé.mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
 
 
 
@@ -104,7 +104,7 @@ int nkmain(const NkEntryState& state) {
 * **Droit désactivé :** Autorisation d'agrandir la fenêtre.
 
 
-* **Impact utilisateur :** L'utilisateur **ne peut plus agrandir** la fenêtre au maximum de la surface de l'écran via le bouton d'agrandissement « ◻ » (bouton grisé ou absent).
+* **Impact utilisateur :** L'utilisateur **ne peut plus agrandir** la fenêtre au maximum de la surface de l'écran via le bouton d'agrandissement (bouton grisé ou absent).mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
 
 
 
