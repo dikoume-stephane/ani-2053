@@ -91,6 +91,49 @@ int nkmain(const NkEntryState& state) {
 | Zone 5 | ResizeNWSE | Flèche de redimensionnement diagonale |
 | Zone 6 | ResizeNESW | Flèche de redimensionnement diagonale |
 
+### sortie du terminal
+```powershell
+jenga run  
+
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║                ██╗███████╗███╗   ██╗ ██████╗  █████╗             ║
+║                ██║██╔════╝████╗  ██║██╔════╝ ██╔══██╗            ║
+║                ██║█████╗  ██╔██╗ ██║██║  ███╗███████║            ║
+║           ██   ██║██╔══╝  ██║╚██╗██║██║   ██║██╔══██║            ║
+║           ╚█████╔╝███████╗██║ ╚████║╚██████╔╝██║  ██║            ║
+║            ╚════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝            ║
+║                                                                  ║
+║             Multi-platform C/C++ Build System v2.8.0             ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ▶  EXECUTION  —  window.exe
+     D:\2DS\projet\programmation_cpp\Firt_window\Firtwindow\Build\Bin\Debug-Windows\window\window.exe
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Survol Zone 0 -> Curseur modifie.
+Survol Zone 1 -> Curseur modifie.
+Survol Zone 2 -> Curseur modifie.
+Survol Zone 3 -> Curseur modifie.
+Survol Zone 4 -> Curseur modifie.
+Survol Zone 5 -> Curseur modifie.
+Survol Zone 6 -> Curseur modifie.
+Survol Zone 5 -> Curseur modifie.
+Survol Zone 4 -> Curseur modifie.
+Survol Zone 3 -> Curseur modifie.
+Survol Zone 2 -> Curseur modifie.
+Survol Zone 1 -> Curseur modifie.
+Survol Zone 0 -> Curseur modifie.
+Survol Zone 6 -> Curseur modifie.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ◀  FIN D'EXECUTION  —  termine normalement  (62.36s)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
 ---
 
 ## 3. Poser le curseur une seule fois au démarrage
