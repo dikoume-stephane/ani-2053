@@ -1,6 +1,6 @@
 # Chapitre 03 — Exercice 2 : Les sept droits
 
-## 1. Code source (`c3-exo2_main.cpp`)
+## 1. Code source ([`c3-exo2_main.cpp`](c3-exo2_main.cpp))
 
 Le code ci-dessous regroupe les sept propriétés de configuration de la fenêtre. Il suffit de passer manuellement chaque propriété à `false` une par une pour tester l'impact sur le comportement de la fenêtre[cite: 1]. La touche `ÉCHAP` est gérée pour permettre de fermer la fenêtre même lorsque le bouton de fermeture ou la barre de titre est désactivé[cite: 1, 2].
 

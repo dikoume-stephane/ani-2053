@@ -5,6 +5,7 @@
 ```cpp
 #include "NKWindow/NKWindow.h"
 #include "NKWindow/NKMain.h"
+#include "NKEvent/NkWindowEvent.h"
 
 using namespace nkentseu;
 
@@ -15,55 +16,104 @@ int nkmain(const NkEntryState &state) {
         logger.Error("[app] creation fenetre echouee");
         return -1;
     }
-    while (window.IsOpen()) { /* les evenements arrivent ici */ }
+    while (window.IsOpen()) { 
+        while (NkEvent* ev = NkEvents().PollEvent()) {
+            if (ev->Is<NkWindowCloseEvent>()) {
+                window.Close();
+            }
+        } 
+    }
     return 0;
 }
 
 ```
 ## 2. Décompte des lignes
 
-Le programme comporte **20 lignes de code** (comprenant les lignes de presentation et les inclusions nécessaires).
+Le programme comporte **23 lignes de code** (comprenant les lignes de presentation et les inclusions nécessaires).
 
 ---
 
 ## 3. Explication ligne par ligne et correspondance avec le cours
 
-* **Ligne 1 : `#include "NKWindow/NKWindow.h"**`
-* **Rôle :** Inclut les hearders publique du module `NKWindow` (définition des fonctions de NKWindow).
+**Code du chapitre**
+```cpp
+#include "NKWindow/NKWindow.h"
+#include "NKWindow/NKMain.h"
 
-* **Ligne 2 : `#include "NKWindow/NKMain.h"**`
-* **Rôle :** Génère le point d'entrée natif selon la plateforme hôte (Windows, Linux, Android, etc.) et déclenche l'exécution de `nkmain`.
+int nkmain(const NkEntryState &state) {
+    NkWindowConfig cfg;
+    cfg.title  = "Ma fenetre";
+    cfg.width  = 1280;
+    cfg.height = 720;
 
-* **Ligne 4 : `using namespace nkentseu;**`
-* **Rôle :** Permet d'accéder directement aux classes et types du moteur sans passé par `nkentseu::`.
+    NkWindow window(cfg);
+    if (!window.IsOpen()) {
+        logger.Error("[app] creation fenetre echouee");
+        return -1;
+    }
+    while (window.IsOpen()) { /* les evenements arrivent ici */ }
+    return 0;
+}
+```
 
-* **Ligne 6 : `int nkmain(const NkEntryState& state) {**`
-* **Rôle :** Définit le point d'entrée de l'application Nkentseu recevant l'état d'initialisation (`NkEntryState`).
+* **Ligne 1 à 3 : les inclusions.
+ `#include "NKWindow/NKWindow.h"` et `#include "NKWindow/NKMain.h"`
+* **Rôle :** Inclut les hearders publique du module `NKWindow` (définition des fonctions de NKWindow).et Génère le point d'entrée natif selon la plateforme hôte (Windows, Linux, Android, etc.) et déclenche l'exécution de `nkmain`. ils sont present dans le chapitre. mais, `NKEvent/NkWindowEvent.h` n'st pas dans le code du chapitre car il permet de gerer les evenements du. 
 
-* **Ligne 8 : `NkWindow window(NkWindowConfig{});`
-* **Rôle :** Instancie et crée la fenêtre native avec la configuration par défaut (`NkWindowConfig`).
+* **Ligne 5 : `using namespace nkentseu;**`
+* **Rôle :** Permet d'accéder directement aux classes et types du moteur sans passé par `nkentseu::`.il n'est pas present dans le code du chapitre .
 
-* **bloc 9-12 :
-* **Rôle :**  `if (!window.IsOpen())` verifi si la fenetre n'est pas ouverte . si oui, `logger.Error("[app] creation fenetre echouee");` renvoit un log d'erreur. et  `return -1;`ferme le programme avec une valeur d'erreur.
+* **Ligne 7 : `int nkmain(const NkEntryState& state) {**`
+* **Rôle :** Définit le point d'entrée de l'application Nkentseu recevant l'état d'initialisation (`NkEntryState`). cette ligne est aussi presente dans le code du chapitre .
 
-* **Ligne 13 : `while (window.IsOpen()) {.....}`
-* **Rôle :** Démarre la boucle principale qui tourne tant que la fenêtre reste ouverte .
+* **Ligne 9 : `NkWindow window(NkWindowConfig{});`
+* **Rôle :** Instancie et crée la fenêtre native avec la configuration par défaut (`NkWindowConfig`). cette ligne est equivalente au bloc 
+```
+NkWindowConfig cfg;
+    cfg.title  = "Ma fenetre";
+    cfg.width  = 1280;
+    cfg.height = 720;
+```
+du chapitre qui lui fixe manuelement les valeur de configuration .
 
-* **Lignes 14 et 15 : `return 0;` / `}`
+* **bloc 10-13 :
+* **Rôle :**  `if (!window.IsOpen())` verifi si la fenetre n'est pas ouverte . si oui, `logger.Error("[app] creation fenetre echouee");` renvoit un log d'erreur. et  `return -1;`ferme le programme avec une valeur d'erreur.il est aussi present dans le chaqpitre .
+
+* **Ligne 14 : `while (window.IsOpen()) {`
+* **Rôle :** Démarre la boucle principale qui tourne tant que la fenêtre reste ouverte . cette ligne est aussi presente dans le chapitre. 
+
+* **bloc 15 à 19 : `return 0;` / `}`
 * **Rôle :** Fermeture de la boucle, fin de la fonction `nkmain` avec un code de retour succès (`0`) et destruction propre de la fenêtre.
 
-## 4. Constats et analyse du comportement
+* lignes 21 et 22 : `while (NkEvent* ev = NkEvents().PollEvent()) {....` 
+* **Rôle :** c'est la boucle d'evennement du programme elle toune tantque le programme et le systheme renvoient des evennements et appele la fonction de fermeture du programme`window.close();` quand l'evenement du clic sur la croix de fermeture est detecté. 
 
-### Observations lors de l'exécution
-Dans cette version du code où le corps de la boucle `while (window.IsOpen())` est vide :
-1. **Incapacité d'interagir normalement avec la fenêtre :** Les boutons de la barre de titre (fermeture, réduction, agrandissement) ne fonctionnent pas.
-2. **Fenêtre figée :** La fenêtre ne répond plus aux événements du système d'exploitation.
-3. **Fermeture impossible :** La fenêtre reste bloquée ouverte et l'arrêt du programme nécessite d'interrompre manuellement le processus dans le terminal (via `Ctrl + C` ).
+## 4 execution 
+le programme à ete executé et on peut voir à la sortie du terminal que celui ci se termine normalement .
+```powershell
+jenga run  
 
-### Explication technique
-Ce comportement s'explique par l'absence de traitement des événements :
-* **Accumulation des messages système :** Le système d'exploitation envoie en continu des événements natifs à la fenêtre (clics sur la croix, déplacements, rafraîchissement d'affichage).
-* **Blocage du traitement :** En l'absence de l'appel à `NkEvents().PollEvent()`, cette file d'événements n'est jamais vidée ni traitée. 
-* **Boucle infinie :** Comme l'événement de fermeture (`NkWindowCloseEvent`) n'est jamais intercepté, la méthode `window.IsOpen()` continue de renvoyer `true` indéfiniment, bloquant le programme dans la boucle principale.
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║                ██╗███████╗███╗   ██╗ ██████╗  █████╗             ║
+║                ██║██╔════╝████╗  ██║██╔════╝ ██╔══██╗            ║
+║                ██║█████╗  ██╔██╗ ██║██║  ███╗███████║            ║
+║           ██   ██║██╔══╝  ██║╚██╗██║██║   ██║██╔══██║            ║
+║           ╚█████╔╝███████╗██║ ╚████║╚██████╔╝██║  ██║            ║
+║            ╚════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝            ║
+║                                                                  ║
+║             Multi-platform C/C++ Build System v2.8.0             ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
 
-**Conclusion :** Pour qu'une fenêtre reste réactive et puisse être fermée proprement, il est necessaire d'ajouter la gestion d'événements à chaque tour de la boucle principale.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ▶  EXECUTION  —  window.exe
+     D:\2DS\projet\programmation_cpp\Firt_window\Firtwindow\Build\Bin\Debug-Windows\window\window.exe
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ◀  FIN D'EXECUTION  —  termine normalement  (4.73s)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
