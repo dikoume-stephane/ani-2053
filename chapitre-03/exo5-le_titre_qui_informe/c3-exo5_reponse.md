@@ -147,5 +147,5 @@ document sauvegarde !!
 
 Le titre suit la structure demandée :
 
-* **Non modifié :** `MonDocument.txt - (800x600)`
-* **Modifié :** `MonDocument.txt * - (800x600)`
+* **Non modifié :** `nom_du_docu - (800x600)`
+* **Modifié :** `nom_du_docu * - (800x600)`
