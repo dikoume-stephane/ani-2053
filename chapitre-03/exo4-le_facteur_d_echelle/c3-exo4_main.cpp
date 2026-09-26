@@ -8,19 +8,14 @@
 using namespace nkentseu;
 
 void PrintScaleInfo(NkWindow& window) {
-    float windowSizeH = window.GetConfig().height;
-    float windowSizeW = window.GetConfig().width;
-    math::NkVec2u renderSize = window.GetSize();
+    math::NkVec2u windowSize = window.GetSize();
+    float renderSizeW = window.GetSurfaceDesc().width;
+    float renderSizeH = window.GetSurfaceDesc().height;
     float scale      = window.GetDpiScale();
 
-    // Calcul de la taille physique réelle sur le GPU (Taille utile x DPI)
-    uint32 gpuWidth  = static_cast<uint32>(renderSize.x * scale);
-    uint32 gpuHeight = static_cast<uint32>(renderSize.y * scale);
-
     std::cout << "--------------------------------------------------\n"
-              << "Taille Config (Demandee)    : " << windowSizeW << " x " << windowSizeH << " px\n"
-              << "Taille Fenetre (Zone client): " << renderSize.x << " x " << renderSize.y << " px\n"
-              << "Taille Cible Rendu (GPU)    : " << gpuWidth << " x " << gpuHeight << " px\n"
+              << "Taille Config (Demandee)    : " << windowSize.x << " x " << windowSize.y << " px\n"
+              << "Taille Cible Rendu (GPU)    : " << renderSizeW << " x " << renderSizeH << " px\n"
               << "Facteur d'Echelle (DPI)     : " << std::fixed << std::setprecision(2) << scale << "\n"
               << "--------------------------------------------------" << std::endl;
 }
