@@ -1,8 +1,7 @@
 # Chapitre 03 — Exercice 2 : Les sept droits
 
 ## 1. Code source ([`c3-exo2_main.cpp`](c3-exo2_main.cpp))
-
-Le code ci-dessous regroupe les sept propriétés de configuration de la fenêtre. Il suffit de passer manuellement chaque propriété à `false` une par une pour tester l'impact sur le comportement de la fenêtre. La touche `ÉCHAP` est gérée pour permettre de fermer la fenêtre même lorsque le bouton de fermeture ou la barre de titre est désactivé[cite: 1, 2].
+dans le programme ci dessous, noua savont l'utlilisation des sept comfiguration de comportement de la fenetre . 
 
 ```cpp
 #include "NKWindow/NKWindow.h"
@@ -57,10 +56,7 @@ int nkmain(const NkEntryState& state) {
 
 ### Cas 1 : `cfg.resizable = false`
 
-* **Droit désactivé :** Autorisation de redimensionner la fenêtre.
-
-
-* **Impact utilisateur :** L'utilisateur **ne peut plus redimensionner** la fenêtre en étirant ses bordures ou ses coins avec la souris. Les curseurs de redimensionnement n'apparaissent pas au survol des bords.mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
+* il est censé ampecher L'utilisateur **de redimensionner** la fenêtre en étirant ses bordures ou ses coins avec la souris.mais pendans les testes, en passant la valeur sur true ou false, ça ne changais rien. la fenetre etais toujour redimentionnable. 
 
 
 
@@ -68,10 +64,7 @@ int nkmain(const NkEntryState& state) {
 
 ### Cas 2 : `cfg.movable = false`
 
-* **Droit désactivé :** Autorisation de déplacer la fenêtre.
-
-
-* **Impact utilisateur :** L'utilisateur **ne peut plus déplacer** la fenêtre sur son écran en la faisant glisser par sa barre de titre. La fenêtre reste verrouillée à sa position initiale.mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
+* il est censé ampecher L'utilisateur **de déplacer** la fenêtre sur son écran en la faisant glisser par la barre de titre.mais pendans les testes, en passant la valeur sur true ou false,la fentre etais toujour deplacable.
 
 
 
@@ -79,32 +72,20 @@ int nkmain(const NkEntryState& state) {
 
 ### Cas 3 : `cfg.closable = false`
 
-* **Droit désactivé :** Autorisation de fermer la fenêtre via l'interface système.
-
-
-* **Impact utilisateur :** L'utilisateur **ne peut plus fermer** la fenêtre en cliquant sur la croix système (le bouton est grisé ou inactif). La fermeture n'est possible que par programme ou via le raccourci clavier géré dans le code (touche `ÉCHAP`).mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
-
-
+* cette regle ampeche l'utilisateur **de plus fermer** la fenêtre en cliquant sur la croix système. La fermeture n'est possible que par programme ou via le raccourci clavier (ctrl+c du terminal) ou par une autre mathode.pendans les testes,en passant la valeur sur true ou false la fenetre etais toujour fermable.
 
 ---
 
 ### Cas 4 : `cfg.minimizable = false`
 
-* **Droit désactivé :** Autorisation de réduire la fenêtre.
-
-
-* **Impact utilisateur :** L'utilisateur **ne peut plus réduire** la fenêtre dans la barre des tâches. Le bouton de réduction de la barre de titre est absent ou grisé.mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
-
+* L'utilisateur **n'est plus censé pourvoir réduire** la fenêtre dans la barre des tâches.pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, le reglage ne s'appliquais pas.
 
 
 ---
 
 ### Cas 5 : `cfg.maximizable = false`
 
-* **Droit désactivé :** Autorisation d'agrandir la fenêtre.
-
-
-* **Impact utilisateur :** L'utilisateur **ne peut plus agrandir** la fenêtre au maximum de la surface de l'écran via le bouton d'agrandissement (bouton grisé ou absent).mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
+* il est censé ampecher l'utilisateur **d'agrandir** la fenêtre au maximum de la surface de l'écran via le bouton d'agrandissement .mais pendans les testes, meme constat que pour les autres.
 
 
 
@@ -112,10 +93,7 @@ int nkmain(const NkEntryState& state) {
 
 ### Cas 6 : `cfg.canFullscreen = false`
 
-* **Droit désactivé :** Capacité d'accès au mode plein écran.
-
-
-* **Impact utilisateur :** L'utilisateur **ne peut plus faire basculer** la fenêtre en plein écran natif. Les tentatives de bascule ou raccourcis système plein écran sont ignorés. mais pendans les testes, le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true ou false, ça ne changais rien . 
+* L'utilisateur n'est plus censé pouvoir faire passer la fenêtre en plein écran natif (au debut du programme). Les tentatives de bascule ou raccourcis système plein écran sont ignorés. mais meme constat que les autres pendant le test.
 
 
 
@@ -123,7 +101,6 @@ int nkmain(const NkEntryState& state) {
 
 ### Cas 7 : `cfg.fullscreen = false`
 
-* **Droit désactivé :** plein ecrrant natif.
+* la fenêtre est censée s'ouvrrir en mode fenêtré classique dès son lancement. mais, lors des tests, en passant la valeur sur true, la fenetre devenais invisible et sur false, elle redevenais normale.
 
-
-* **Impact utilisateur :** la fenêtre s'ouvre en mode fenêtré classique dès son lancement. mais, lors des tests  le comportement attendu n'est pas celui qui à été soulevé. en passant la valeur sur true, la fenetre devenais invisible et sur false, elle redevenais normale.
+les explication sur chaque configuration son des suppositions faites à partir ds noms des configuration et des commentaire du chapitre.
