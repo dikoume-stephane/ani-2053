@@ -2,8 +2,6 @@
 
 ## 1. Code source ([`c3-exo8_main.cpp`](c3-exo8_main.cpp))
 
-Le programme lit et modifie le contenu du presse-papiers système dans les deux sens (texte et image) via l'interface fournie par `NkWindow`[cite: 1, 2].
-
 ```cpp
 #include "NKWindow/NKWindow.h"
 #include "NKWindow/NKMain.h"
