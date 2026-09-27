@@ -1,11 +1,10 @@
 # Chapitre 03 — Exercice 3 : Les bornes
 
-## 1. Code source ([`c3-exo3_main.cpp`](c3-exo3_main.cpp))
+## 1. Code source ([`c3-exo3_main.cpp`]())
 
 ```cpp
 #include "NKWindow/NKWindow.h"
 #include "NKWindow/NKMain.h"
-#include "NKEvent/NkKeyboardEvent.h"
 #include "NKEvent/NkWindowEvent.h"
 
 using namespace nkentseu;
