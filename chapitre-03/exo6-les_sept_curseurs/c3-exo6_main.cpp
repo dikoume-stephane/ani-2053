@@ -55,7 +55,7 @@ int nkmain(const NkEntryState& state) {
                 if (newZone < 0) newZone = 0;
                 if (newZone > 6) newZone = 6;
 
-                // Application du nouveau curseur lors du changement de zone
+                // Application du nouveau curseur lors du changement     de zone
                 if (newZone != currentZone) {
                     currentZone = newZone;
                     window.SetCursor(cursors[currentZone]);
