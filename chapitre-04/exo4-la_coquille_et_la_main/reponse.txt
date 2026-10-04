@@ -1,0 +1,8 @@
+Ce que la coquille me donne :
+La coquille NkCanvasApp prend en charge toute l'infrastucture bas niveau : la configuration initiale de la fenetre, la creation du contexte graphique OpenGL, la gestion du sous-systeme d'evenements NkEvents() ainsi que la boucle d'animation principale et la mesure du temps (delta time). Elle decoupe le cycle de vie de l'application en methodes virtuelles (OnInit, OnUpdate, OnRender), ce qui reduit le code passe-partout.
+
+Ce qu'elle me prend :
+La coquille prend le controle total sur la boucle principale while(window.IsOpen()) et impose l'ordre d'execution ainsi que l'appel implicite aux methodes Clear() et Display() sur la cible de rendu. De plus, la configuration de la fenetre doit etre faite dans le constructeur via Config(), ce qui empeche une initialisation personnalisee ou l'interception directe d'evenements avant leur distribution.
+
+Quand je choisirais la main :
+Je choisirais la boucle a la main lorsque j'ai besoin d'un controle total sur l'architecture de l'application, par exemple pour un moteur de jeu sur mesure ou une application multi-fenetres. C'est aussi indispensable si je dois integrer un contexte graphique specifique, personnaliser la gestion des evenements.
