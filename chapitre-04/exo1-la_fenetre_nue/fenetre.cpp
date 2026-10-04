@@ -11,6 +11,10 @@ public:
         Config().height = 600;
         Config().clearColor = renderer::NkColor2D(18, 18, 24);
     }
+
+    bool OnInit() override {
+        return true;
+    }
 };
 
 int nkmain(const NkEntryState& state) {
