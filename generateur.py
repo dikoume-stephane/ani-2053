@@ -4,18 +4,16 @@ from pathlib import Path
 # Colle ici tes 12 lignes d'exercices
 # Format attendu : "chemin/vers/dossier/fichier1, fichier2, fichier3"
 devoirs = [
-    "chapitre-03/exo1-la_fenetre_nue/c3-exo1_main.cpp, c3-exo1_reponse.md",
-    "chapitre-03/exo2-les_sept_droits/c3-exo2_main.cpp, c3-exo2_reponse.md",
-    "chapitre-03/exo12-l_inventaire_des_ecrans/c3-exo12_main.cpp, c3-exo12_reponse.md",
-    "chapitre-03/exo11-deux_fenetres/c3-exo11_main.cpp, c3-exo11_reponse.md",
-    "chapitre-03/exo10-la_fenetre_sans_bordure/c3-exo10_main.cpp, c3-exo10_reponse.md",
-    "chapitre-03/exo9-les_quatre_dialogues/c3-exo9_main.cpp, c3-exo9_reponse.md",
-    "chapitre-03/exo8-le_presse_papiers_dans_les_deux_sens/c3-exo8_main.cpp, c3-exo8_reponse.md",
-    "chapitre-03/exo7-le_glisser_qui_sort/c3-exo7_main.cpp, c3-exo7_reponse.md",
-    "chapitre-03/exo6-les_sept_curseurs/c3-exo6_main.cpp, c3-exo6_reponse.md",
-    "chapitre-03/exo5-le_titre_qui_informe/c3-exo5_main.cpp, c3-exo5_reponse.md",
-    "chapitre-03/exo4-le_facteur_d_echelle/c3-exo4_main.cpp, c3-exo4_reponse.md",
-    "chapitre-03/exo3-les_bornes/c3-exo3_main.cpp, c3-exo3_reponse.md"
+    "chapitre-04/exo10-l_interface_qui_ne_defile_pas/interface.cpp, journal.txt, reponse.txt",
+    "chapitre-04/exo9-les_six_politiques/main.cpp",
+    "chapitre-04/exo8-l_objet_dans_l_objet/main.cpp",
+    "chapitre-04/exo7-la_planche_de_sprites/main.cpp",
+    "chapitre-04/exo6-evenement_ou_interrogation/main.cpp",
+    "chapitre-04/exo5-le_cercle_qui_n_en_est_pas_un/main.cpp",
+    "chapitre-04/exo4-la_coquille_et_la_main/coquille.cpp, alamain.cpp, comparaison.txt, reponse.txt",
+    "chapitre-04/exo3-le_pivot/main.cpp",
+    "chapitre-04/exo2-ce_que_forment_les_sommets/main.cpp",
+    "chapitre-04/exo1-la_fenetre_nue/fenetre.cpp, mesure.txt, reponse.txt"
     # Ajoute les 10 autres lignes ici...
 ]
 

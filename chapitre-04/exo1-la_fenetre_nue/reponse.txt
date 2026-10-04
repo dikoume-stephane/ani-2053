@@ -1,0 +1,8 @@
+Ce que la coquille fait a ma place :
+La coquille NkCanvasApp prend en charge toute l'initialisation de bas niveau : elle instancie et crée la fenêtre native, initialise le contexte graphique et le renderer GPU selon la plateforme, instancie l'horloge système pour mesurer le delta-temps, et gère la boucle principale d'événements (mise à jour, effacement avec ClearColor, rendu et présentation avec Display) jusqu'à la fermeture de la fenêtre.
+
+Ce qui se passe si je configure dans OnInit :
+Si l'on place la configuration dans la méthode OnInit(), la fenêtre ne prend pas en compte ces modifications. En effet, la fenêtre native et le contexte de rendu sont déjà créés et initialisés par la coquille juste avant l'appel à OnInit(). Par conséquent, modifier mConfig dans OnInit() arrive trop tard et n'a aucun effet sur les dimensions ou le titre de la fenêtre.
+
+Ce qui se passe sans NKMain.h :
+Sans l'inclusion du fichier d'en-tête "NKWindow/NKMain.h", le fichier c++ compile sans aucune erreur de syntaxe, mais l'étape d'édition de liens (linker) échoue. Le lieur signale une erreur de fonction non défini car NKMain.h fournit la macro de point d'entrée native du système d'exploitation qui fait le pont vers la fonction nkmain().
