@@ -1,0 +1,8 @@
+Ce que fait la barre sans ResetView :
+Sans l'appel à ResetView, la barre d'interface se déplace hors de l'écran vers la gauche au fur et à mesure que la caméra avance vers la droite. Elle se comporte comme si elle était un objet placé dans le monde plutôt qu'un élément fixe superposé à l'écran.
+
+Pourquoi :
+Une vue n'est pas une propriété rattachée à un objet individuel, mais un état du moteur de rendu. Une fois qu'une vue avec un centre modifié est appliquée à la cible de rendu, tous les appels de dessin suivants sont transformés selon cette vue jusqu'à ce qu'une autre vue soit définie ou que ResetView soit appelé.
+
+Où placer l'appel :
+L'appel à ResetView doit être placé juste après le dessin de tous les éléments du monde transformés par la caméra, et immédiatement avant le dessin des éléments fixes de l'interface utilisateur (tels que le HUD, les barres de menu ou les superpositions de texte).
