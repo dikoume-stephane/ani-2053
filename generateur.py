@@ -4,16 +4,16 @@ from pathlib import Path
 # Colle ici tes 12 lignes d'exercices
 # Format attendu : "chemin/vers/dossier/fichier1, fichier2, fichier3"
 devoirs = [
-    "chapitre-04/exo10-l_interface_qui_ne_defile_pas/interface.cpp, journal.txt, reponse.txt",
-    "chapitre-04/exo9-les_six_politiques/main.cpp",
-    "chapitre-04/exo8-l_objet_dans_l_objet/main.cpp",
-    "chapitre-04/exo7-la_planche_de_sprites/main.cpp",
-    "chapitre-04/exo6-evenement_ou_interrogation/main.cpp",
-    "chapitre-04/exo5-le_cercle_qui_n_en_est_pas_un/main.cpp",
-    "chapitre-04/exo4-la_coquille_et_la_main/coquille.cpp, alamain.cpp, comparaison.txt, reponse.txt",
-    "chapitre-04/exo3-le_pivot/main.cpp",
-    "chapitre-04/exo2-ce_que_forment_les_sommets/main.cpp",
-    "chapitre-04/exo1-la_fenetre_nue/fenetre.cpp, mesure.txt, reponse.txt"
+    "chapitre-05/exo10-l_erreur_claire/lecteur.cpp, resultats.txt, reponse.txt",
+    "chapitre-05/exo9-conteneur_et_codec/main.cpp",
+    "chapitre-05/exo8-un_son_vingt_voix/main.cpp",
+    "chapitre-05/exo7-le_calcul_puis_le_fichier/main.cpp",
+    "chapitre-05/exo6-la_ligne_de_base/main.cpp",
+    "chapitre-05/exo5-trois_polices_un_atlas/main.cpp",
+    "chapitre-05/exo4-l_atlas_vu/atlas.cpp, compte.txt, reponse.txt",
+    "chapitre-05/exo3-les_six_formats/main.cpp",
+    "chapitre-05/exo2-l_extension_qui_ment/main.cpp",
+    "chapitre-05/exo1-le_calcul_puis_la_mesure/mesure.cpp, mesures.txt, reponse.txt"
     # Ajoute les 10 autres lignes ici...
 ]
 
