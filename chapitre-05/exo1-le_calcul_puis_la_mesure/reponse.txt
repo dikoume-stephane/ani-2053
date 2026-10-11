@@ -1,0 +1,8 @@
+Ce que la taille du fichier ne dit pas :
+La taille d'un fichier image sur le disque ne reflète en rien sa place en mémoire vive (RAM). En effet, des formats comme le JPEG ou le PNG utilisent des algorithmes de compression  qui réduisent fortement le poids des données stockées. Une fois décodée par le programme, l'image redevient un ensemble de pixels bruts non compressés dont la taille en mémoire dépend uniquement de ses dimensions (largeur × hauteur) et de la profondeur de ses canaux (octets par pixel).
+
+L'ecart entre calcul et mesure :
+L'écart observé entre le calcul théorique (Largeur × Hauteur × BytesPP) et la mesure réelle de la mémoire du processus provient du fait que le calcul théorique mesure uniquement la taille de l'image brute, alors que la mesure réelle inclut l'espace supplémentaire dont l'ordinateur a besoin pour la manipuler. En effet, le système d'exploitation utilise des "boîtes" de taille fixe et ajoute du vide pour aligner les données afin de travailler plus vite. De plus, le logiciel consomme un peu de mémoire en plus pour stocker des outils temporaires et des informations d'affichage. C'est ce surplus technique qui crée la différence.
+
+Avant d'ouvrir cinquante photos :
+Ouvrir cinquante photographies haute résolution en même temps sans précaution mène inévitablement à la saturation de la mémoire vive (RAM) et au crash du programme. Chaque photo de 12 mégapixels en format RGBA 32 bits occupant environ 48 Mo en mémoire, cinquante photos représenteraient plus de 2,4 Go de RAM consommés uniquement pour l'affichage brut. Il est donc indispensable de libérer les images inutilisées, d'utiliser du streaming ou des miniatures adaptées.
