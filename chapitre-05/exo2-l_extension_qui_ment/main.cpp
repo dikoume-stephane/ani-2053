@@ -139,9 +139,7 @@ string detectFormat(long long size, const vector<int>& b) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
+    
     int n;
     if (!(cin >> n)) return 0;
 
