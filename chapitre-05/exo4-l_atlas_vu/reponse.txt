@@ -1,0 +1,8 @@
+Pourquoi une seule texture :
+Regrouper tous les glyphes dans une seule et unique texture (un atlas) est indispensable pour optimiser les performances de rendu sur le GPU. Cela permet d'effectuer un seul appel de dessin pour tout le texte d'un texte ou d'une interface, évitant ainsi des changements de texture incessants.
+
+Ce que change la taille :
+Augmenter la taille de la police (par exemple de 18 à 48) multiplie la surface nécessaire pour chaque glyphe. Les lettres étant beaucoup plus grandes, l'atlas doit s'étendre sur une résolution de texture supérieure (passant par exemple de 512x512 à 1024x1024), ce qui augmente directement l'empreinte mémoire VRAM consommée par la police.
+
+A quoi sert la marge entre glyphes :
+La marge laissée entre chaque glyphe dans l'atlas sert à empêcher le phénomène de saignement. Lors du rendu sur le GPU, le filtrage des textures interpole (se superpose) les pixels voisins : sans cette marge de sécurité, les pixels transparents ou colorés d'un glyphe voisin déteindraient sur le caractère affiché, créant des effets visuels indésirables.
