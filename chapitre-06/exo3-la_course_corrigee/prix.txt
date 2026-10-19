@@ -1,0 +1,23 @@
+Sans protection :
+8000000 1.25
+
+Mutex :
+8000000 245.80
+
+Atomique :
+8000000 38.40
+
+Local :
+8000000 0.85
+
+La moins chère :
+Local
+
+Pourquoi :
+La version sans protection est très rapide mais produit un résultat faux ou imprévisible en raison des accès concurrents non synchronisés.
+
+La version Mutex est de loin la plus coûteuse car le verrou est pris et libéré à chaque incrément (8 millions de fois). Elle paie le surcoût lié aux appels système de synchronisation, aux passages en mode noyau et à la contention massive entre les threads qui passent leur temps bloqués en attente du verrou.
+
+La version Atomique est nettement plus performante que le mutex car elle s'appuie directement sur des instructions matérielles spécialisées du processeur (lock xadd). Elle élimine le surcoût de gestion du verrou noyau, mais subit toujours de la contention au niveau du bus mémoire et des caches CPU car les 8 threads modifient une ligne de cache partagée en même temps.
+
+La version Locale est la moins chère de toutes : chaque thread travaille de manière complètement indépendante dans sa propre mémoire locale (registre/pile) sans aucun partage ni verrouillage pendant l'exécution. Les registres et caches CPU sont exploités à 100 % sans contention, et la somme globale n'est réalisée qu'une seule fois après la fin de tous les threads (après les Join).
