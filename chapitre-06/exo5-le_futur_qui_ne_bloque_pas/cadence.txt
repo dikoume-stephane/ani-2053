@@ -1,0 +1,13 @@
+Image :
+4.2 Mo (3840x2160 pixels), temps de chargement disque/décodage : 185 ms.
+
+Get :
+188.40 0
+
+IsReady :
+16.60 11
+
+Ce qu'on voit :
+Dans la version Get, le carré rouge s'arrête brusquement d'avancer au bout de 60 trames et la fenêtre se fige totalement pendant environ 188 ms. La boucle principale est complètement bloquée sur futur.Get() en attente du thread de chargement, ce qui empêche tout dessin et fait passer le nombre de trames dessinées pendant le chargement à 0.
+
+Dans la version IsReady, le carré rouge continue d'avancer de manière parfaitement fluide sans le moindre à-coup. La boucle principale continue d'exécuter son rendu à 60 FPS (environ 16 ms par trame) en interrogeant futur.IsReady() à chaque passage. 11 trames complètes ont été dessinées pendant que la photo se chargeait en arrière-plan, puis l'image est apparue instantanément dès sa préparation.

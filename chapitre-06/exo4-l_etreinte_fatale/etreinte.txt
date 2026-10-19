@@ -1,0 +1,11 @@
+Constat :
+Le programme se fige complètement sans afficher de message d'erreur ni planter. Il ne rend jamais la main à la console, la consommation CPU tombe à zéro pour ces fils et l'exécution reste bloquée indéfiniment après le démarrage.
+
+Pause :
+Le fil A attend à la ligne 20 la libération du verrou m2 (détenu par le fil B). Le fil B attend à la ligne 26 la libération du verrou m1 (détenu par le fil A). Chaque fil attend indéfiniment le verrou que l'autre possède déjà.
+
+Correction :
+Pour corriger le problème sans supprimer ni verrou ni attente, nous avons modifié l'ordre d'acquisition des verrous dans le fil B. Désormais, le fil B acquiert les verrous m1 puis m2, exactement dans le même ordre que le fil A.
+
+Règle :
+Pour éviter tout interblocage (deadlock) dans l'ensemble d'un programme, il faut établir un ordre global et strict d'acquisition de tous les verrous du système (par exemple par ordre hiérarchique ou par adresse mémoire) et s'assurer que chaque fil acquiert toujours les multiples verrous dont il a besoin en respectant cet ordre unique.
