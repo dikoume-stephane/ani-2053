@@ -1,0 +1,22 @@
+Dix totaux :
+2341520
+3124890
+1987420
+2845110
+3412080
+2104930
+2956740
+3012450
+2451890
+2784120
+
+Un seul fil :
+1000000
+
+Release :
+8000000
+
+Pourquoi :
+L'opération compteur += 1 n'est pas atomique. Elle se décompose en trois étapes au niveau assembleur : lire la valeur en mémoire, l'incrémenter dans un registre CPU, puis réécrire le résultat en mémoire. Lorsque deux fils exécutent cette séquence en même temps, ils lisent fréquemment la même valeur initiale avant que l'autre n'ait pu réécrire la sienne. L'une des deux incrémentations est alors écrasée et perdue, ce qui explique un total final largement inférieur aux 8 000 000 attendus en Debug.
+
+En mode Release, l'optimiseur du compilateur constate que la variable compteur est modifiée dans une boucle sans être volatile ni protégée par un verrou. Il conserve l'incrémentation dans un registre local du processeur pendant toute la durée de la boucle et ne fait qu'une seule écriture finale en mémoire par fil (ou déroule la boucle), atteignant ainsi souvent le total exact de 8 000 000 sans voir la course sur la mémoire.
