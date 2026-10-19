@@ -4,16 +4,16 @@ from pathlib import Path
 # Colle ici tes 12 lignes d'exercices
 # Format attendu : "chemin/vers/dossier/fichier1, fichier2, fichier3"
 devoirs = [
-    "chapitre-05/exo10-l_erreur_claire/lecteur.cpp, resultats.txt, reponse.txt",
-    "chapitre-05/exo9-conteneur_et_codec/main.cpp",
-    "chapitre-05/exo8-un_son_vingt_voix/main.cpp",
-    "chapitre-05/exo7-le_calcul_puis_le_fichier/main.cpp",
-    "chapitre-05/exo6-la_ligne_de_base/main.cpp",
-    "chapitre-05/exo5-trois_polices_un_atlas/main.cpp",
-    "chapitre-05/exo4-l_atlas_vu/atlas.cpp, compte.txt, reponse.txt",
-    "chapitre-05/exo3-les_six_formats/main.cpp",
-    "chapitre-05/exo2-l_extension_qui_ment/main.cpp",
-    "chapitre-05/exo1-le_calcul_puis_la_mesure/mesure.cpp, mesures.txt, reponse.txt"
+    "chapitre-06/exo10-le_joueur_fantome/fantome.cpp, fantome.txt",
+    "chapitre-06/exo9-l_aller_retour/allerretour.cpp, mesures-rtt.txt, rtt.txtp",
+    "chapitre-06/exo8-le_message_qui_compte_ses_octets/octets.cpp, tailles.txt",
+    "chapitre-06/exo7-la_decouverte/decouverte.cpp, serveurs.txt",
+    "chapitre-06/exo5-le_futur_qui_ne_bloque_pas/futur.cpp, cadence.txt",
+    "chapitre-06/exo6-deux_machines_se_parlent/parle.cpp, echange.txt",
+    "chapitre-06/exo4-l_etreinte_fatale/etreinte.cpp, etreinte.txt",
+    "chapitre-06/exo3-la_course_corrigee/corrige.cpp, prix.txt",
+    "chapitre-06/exo2-la_course_provoquee/course.cpp, totaux.txt",
+    "chapitre-06/exo1-la_reserve/reserve.cpp, reserve.txt"
     # Ajoute les 10 autres lignes ici...
 ]
 
