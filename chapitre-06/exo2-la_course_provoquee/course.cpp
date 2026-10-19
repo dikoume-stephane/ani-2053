@@ -1,8 +1,9 @@
-#include <NKThreading/NkThread.h>
+#include "NKThreading/NkThread.h"
+#include "NKWindow/NKMain.h"
 #include <iostream>
 #include <vector>
 
-int main()
+int nkmain(const nkentseu::NkEntryState &state)
 {
     const int numThreads = 8;
     const int incrementsPerThread = 1000000;
