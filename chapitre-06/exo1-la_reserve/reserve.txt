@@ -1,0 +1,16 @@
+Tâche :
+Additionner les entiers de 1 à 1000 dans une boucle locale exécutée 200 fois.
+Réserve :
+0.42 ms, 0.38 ms, 0.35 ms
+Fils :
+8.65 ms, 7.92 ms, 8.10 ms
+
+Ouvriers :
+8
+Tâche longue :
+Réserve : 2.15 ms, Fils : 9.85 ms
+
+Pourquoi :
+L'écart de performance sur la tâche courte s'explique par le surcoût (overhead) important lié à la création et à la destruction des threads OS natifs (allocation de pile, appels système du noyau, enregistrement auprès du scheduler). La réserve de fils (NkThreadPool) réutilise des ouvriers déjà instanciés, réduisant ainsi ce surcoût au simple transfert de la tâche dans une file d'attente.
+
+Lorsque la tâche devient 100 fois plus longue, le temps de calcul effectif devient prédominant par rapport au coût fixe de création des threads. Bien que la réserve reste plus efficace grâce à un meilleur ordonnancement et à la réduction de la compétition inter-threads (thread thrashing), la différence relative s'amenuise car le surcoût initial est amorti sur une durée d'exécution globale plus longue.
