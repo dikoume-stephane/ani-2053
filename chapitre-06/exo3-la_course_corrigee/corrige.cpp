@@ -1,7 +1,8 @@
-#include <NKThreading/NkThread.h>
-#include <NKThreading/NkMutex.h>
-#include <NKCore/NkAtomic.h>
-#include <NKTime/NkChrono.h>
+#include "NKThreading/NkThread.h"
+#include "NKThreading/NkMutex.h"
+#include "NKTime/NkChrono.h"
+#include "NKWindow/NkMain.h"
+#include "NKCore/NkAtomic.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -41,7 +42,7 @@ int RunMutex() {
     for (int i = 0; i < kNumThreads; ++i) {
         threads.emplace_back([&counter, &mutex]() {
             for (int j = 0; j < kIncrements; ++j) {
-                NkScopedLock<NkMutex> lock(mutex);
+                NkScopedLockMutex lock(mutex);
                 counter += 1;
             }
         });
@@ -87,7 +88,6 @@ int RunLocal() {
         });
     }
 
-    // Attente impérative de la fin des threads avant de lire les résultats
     for (auto& t : threads) {
         t.Join();
     }
@@ -99,7 +99,6 @@ int RunLocal() {
     return totalSum;
 }
 
-// Utilitaire de mesure (médiane de 3 exécutions)
 double MeasureMedian(int (*func)(), int& outTotal) {
     double times[3];
     NkChrono chrono;
@@ -107,11 +106,11 @@ double MeasureMedian(int (*func)(), int& outTotal) {
     for (int i = 0; i < 3; ++i) {
         chrono.Reset();
         outTotal = func();
-        times[i] = chrono.Elapsed().milliseconds();
+        times[i] = chrono.Elapsed().milliseconds;
     }
 
     std::sort(times, times + 3);
-    return times[1]; // Retourne la valeur médiane
+    return times[1];
 }
 
 int nkmain(const NkEntryState &state)
