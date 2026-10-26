@@ -4,16 +4,16 @@ from pathlib import Path
 # Colle ici tes 12 lignes d'exercices
 # Format attendu : "chemin/vers/dossier/fichier1, fichier2, fichier3"
 devoirs = [
-    "chapitre-06/exo10-le_joueur_fantome/fantome.cpp, fantome.txt",
-    "chapitre-06/exo9-l_aller_retour/allerretour.cpp, mesures-rtt.txt, rtt.txtp",
-    "chapitre-06/exo8-le_message_qui_compte_ses_octets/octets.cpp, tailles.txt",
-    "chapitre-06/exo7-la_decouverte/decouverte.cpp, serveurs.txt",
-    "chapitre-06/exo5-le_futur_qui_ne_bloque_pas/futur.cpp, cadence.txt",
-    "chapitre-06/exo6-deux_machines_se_parlent/parle.cpp, echange.txt",
-    "chapitre-06/exo4-l_etreinte_fatale/etreinte.cpp, etreinte.txt",
-    "chapitre-06/exo3-la_course_corrigee/corrige.cpp, prix.txt",
-    "chapitre-06/exo2-la_course_provoquee/course.cpp, totaux.txt",
-    "chapitre-06/exo1-la_reserve/reserve.cpp, reserve.txt"
+    "chapitre-07/exo10-trois_portes_trois_estimations/portes.txt",
+    "chapitre-07/exo9-le_chemin_d_une_touche/touche.txt",
+    "chapitre-07/exo8-le_fichier_long_et_le_fichier_difficile/fichiers.txt",
+    "chapitre-07/exo7-le_carnet_d_une_heure/carnet.txt",
+    "chapitre-07/exo6-la_sonde_qui_compte/sonde.cpp, sonde.txt",
+    "chapitre-07/exo5-qui_appelle_vraiment/appelants.cpp, appelants.txt",
+    "chapitre-07/exo4-le_mensonge_suivant/mensonge.txt",
+    "chapitre-07/exo3-suivre_un_appel/appel.txt",
+    "chapitre-07/exo2-les_trois_questions/questions.txt",
+    "chapitre-07/exo1-trente_secondes_de_carte/carte.txt"
     # Ajoute les 10 autres lignes ici...
 ]
 

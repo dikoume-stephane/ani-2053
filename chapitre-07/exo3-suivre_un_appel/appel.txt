@@ -1,0 +1,13 @@
+Les sauts :
+1. Fichier include/NKCanvas/App/NkCanvasApp.h, fonction OnRender() : l'application appelle la méthode de nettoyage de la cible de rendu courante.
+2. Fichier include/NKCanvas/Renderer/Core/NkIRenderer2D.h, interface de rendu 2D : définition de la méthode de nettoyage ou d'effacement de l'écran.
+3. Fichier include/NKCanvas/Renderer/Core/NkRenderer2D.h, classe concrète de rendu : transmission de l'ordre vers l'implémentation de bas niveau du renderer.
+
+Arrêt :
+La fonction virtuelle pure ou l'appel bas niveau du renderer / backend graphique situé dans le module de rendu.
+
+Pourquoi là :
+Le signal d'arrêt est l'atteinte d'une méthode virtuelle pure ou d'une interface de bas niveau dont l'implémentation concrète dépend du backend graphique cible (OpenGL, SDL, etc.).
+
+Ce que je sais maintenant :
+Je sais que l'appel d'effacement part de la classe d'application NkCanvasApp, traverse l'interface de rendu 2D NkIRenderer2D et atteint les gestionnaires de bas niveau du renderer. Je suppose, sans l'avoir visualisé dans ces en-têtes, que cette commande se traduit par un appel natif à la fonction de nettoyage des tampons du contexte graphique (comme glClear sous OpenGL).

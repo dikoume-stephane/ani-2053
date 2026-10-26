@@ -1,0 +1,11 @@
+Ce qu'il possède :
+Il possède quatre données membres représentant l'état spatial géométrique : une position (mPosition), une rotation en radians (mRotation), des facteurs d'échelle (mScale) et un pivot local (mOrigin). Il possède également quatre membres liés au cache et à l'optimisation des calculs : deux matrices transformées (mCachedTransform, mCachedInverse) et deux indicateurs booléens de mise à jour (mDirty, mInverseDirty). Je mets à part les membres de cache et les indicateurs booléens (mutable) car ils ne constituent pas l'état géométrique intrinsèque de l'objet, mais des optimisations techniques internes pour éviter de recalculer les matrices à chaque appel.
+
+Qui l'appelle :
+Il est appelé et hérité par plusieurs en-têtes majeurs du module de rendu du kit, notamment include/NKCanvas/Renderer/Core/NkDrawable.h, include/NKCanvas/Renderer/Resources/NkSprite.h (utilisé par NkSprite et NkText), et include/NKCanvas/Renderer/Shapes/NkShape.h (utilisé par NkShape), qui héritent tous publiquement de NkTransformable pour gérer leur positionnement et leurs transformations spatiales.
+
+Ce qu'il promet :
+Il promet de stocker et manipuler l'état spatial (position, rotation, échelle, origine), de fournir des mutateurs incrémentaux (Move, Rotate, Scale), de gérer un système de cache paresseux (lazy evaluation) via des drapeaux de modification, et de calculer ou restituer à la demande la matrice de transformation affine 2D combinée (GetTransform) ainsi que son inverse (GetInverseTransform).
+
+Ce que je n'ai pas lu :
+Je n'ai pas eu besoin de lire le corps des fonctions ni les implémentations des fichiers sources .cpp associés, ni les détails internes des structures de matrices ou des fonctions trigonométriques contenues dans NkTransform.h ou NKMath.h.

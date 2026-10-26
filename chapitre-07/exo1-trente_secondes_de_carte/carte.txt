@@ -1,0 +1,13 @@
+Module : NKAudio
+D'après le projet :
+Ce module gère le traitement et la lecture de flux audio en s'appuyant sur des threads et des flux de données (NKStream).
+Il accède aux fichiers via NKFileSystem et s'interface avec NKMedia pour la gestion des formats multimédias et conteneurs.
+Il utilise des calculs mathématiques (NKMath) surement  pour le traitement du signal sonore, ainsi que des outils de gestion mémoire et des conteneurs.
+Il communique avec l'OS via NKPlatform pour piloter la sortie audio et consigne ses activités par le journal (NKLogger).
+Il ne gère aucune interface utilisateur, mais intègre bizarrement NKImage.
+
+Après l'en-tête :
+NKAudio/NkAudio.h expose l'architecture audio STL-free de niveau AAA, définissant le gestionnaire de 256 voix simultanées, les formats supportés (WAV, MP3, OGG, FLAC), les structures 3D (avec support HRTF et effet Doppler), ainsi que les interfaces pour les effets DSP (IAudioEffect) et les backends multiplateformes (IAudioBackend).
+
+Mes erreurs :
+Les dépendances ne laissaient pas deviner la présence de décodeurs internes intégrés (minimp3, stb_vorbis) ni l'ampleur des fonctionnalités AAA avancées telles que la spatialisation HRTF binaurale, la chaîne d'effets DSP en temps réel et la gestion fine du resampling.
